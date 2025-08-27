@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Yonela General Services</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c5530;
+            --secondary-color: #f8b500;
+            --accent-color: #e8f5e8;
+            --text-dark: #2c3e50;
+            --text-light: #6c757d;
+            --gradient-primary: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            --gradient-secondary: linear-gradient(135deg, #f8b500 0%, #ffd700 100%);
+            --gradient-accent: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Header */
+        .navbar {
+            background: var(--primary-color) !important;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+            color: var(--secondary-color) !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--secondary-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover::after,
+        .navbar-nav .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--gradient-primary);
+            padding: 8rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.15"/><circle cx="10" cy="60" r="0.8" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.6" fill="white" opacity="0.12"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .page-header h1 {
+            color: white;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .page-header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.3rem;
+            margin-bottom: 0;
+        }
+
+        .breadcrumb {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 0.8rem 1.5rem;
+            display: inline-flex;
+        }
+
+        .breadcrumb-item {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .breadcrumb-item.active {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: ">";
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Section Styles */
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--gradient-secondary);
+            border-radius: 2px;
+        }
+
+        /* Contact Card Styles */
+        .contact-card {
+            background: white;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            padding: 2.5rem;
+            height: 100%;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-secondary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .contact-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1) rotateY(360deg);
+            background: var(--gradient-secondary);
+        }
+
+        .contact-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .contact-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .contact-info {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* Form Styles */
+        .form-control {
+            border-radius: 10px;
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #e8f5e8;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(44, 85, 48, 0.25);
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 0.8rem 2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--gradient-secondary);
+            color: var(--text-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Map Styles */
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 400px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Business Hours */
+        .hours-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e8f5e8;
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        .day {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .time {
+            color: var(--text-light);
+        }
+
+        /* FAQ Section */
+        .accordion-button {
+            font-weight: 600;
+            padding: 1.5rem;
+            border: none;
+            border-radius: 10px !important;
+            background: var(--accent-color);
+            color: var(--text-dark);
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border: none;
+        }
+
+        .accordion-body {
+            padding: 1.5rem;
+            background: white;
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .contact-card {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+  <img src="assets/YonelaGeneralLogo.png" alt="Logo" width="80" height="80" class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 fade-in-up">
+                    <nav class="breadcrumb mb-4">
+                        <a class="breadcrumb-item" href="index.html">Home</a>
+                        <span class="breadcrumb-item active">Contact Us</span>
+                    </nav>
+                    <h1>Get In Touch</h1>
+                    <p>We're here to answer your questions and discuss how we can serve your property needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="section-title">Contact Information</h2>
+                    <p class="lead">Reach out to us through any of the following channels. We're always ready to assist you.</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 fade-in-up">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3 class="contact-title">Phone</h3>
+                        <p class="contact-info">Call us directly to speak with our team</p>
+                        <div class="text-center">
+                            <a href="tel:0765291405" class="btn btn-outline-primary">076 529 1405</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4 fade-in-up">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="contact-title">Email</h3>
+                        <p class="contact-info">Send us an email for general inquiries</p>
+                        <div class="text-center">
+                            <a href="mailto:puwakamqa@gmail.com" class="btn btn-outline-primary">puwakamqa@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4 fade-in-up">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3 class="contact-title">Visit Us</h3>
+                        <p class="contact-info">Come see us at our office in Olifantshoek</p>
+                        <div class="text-center">
+                            <a href="#location" class="btn btn-outline-primary">View Location</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form & Info -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="section-title">Send Us a Message</h2>
+                    <p class="lead">Have questions about our services? Fill out the form below and we'll get back to you promptly.</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mb-5 fade-in-up">
+                    <div class="contact-card">
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone">
+                            </div>
+                            <div class="mb-3">
+                                <label for="service" class="form-label">Service Interested In</label>
+                                <select class="form-select" id="service">
+                                    <option selected>Select a service</option>
+                                    <option value="property-acquisition">Property Acquisition</option>
+                                    <option value="property-development">Property Development</option>
+                                    <option value="property-management">Property Management</option>
+                                    <option value="accommodation">Accommodation Services</option>
+                                    <option value="maintenance">Maintenance Services</option>
+                                    <option value="consultation">Consultation Services</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-5 fade-in-up">
+                    <div class="contact-card">
+                        <h3 class="contact-title mb-4">Business Hours</h3>
+                        <ul class="hours-list">
+                            <li>
+                                <span class="day">Monday - Friday</span>
+                                <span class="time">8:00 AM - 5:00 PM</span>
+                            </li>
+                            <li>
+                                <span class="day">Saturday</span>
+                                <span class="time">9:00 AM - 1:00 PM</span>
+                            </li>
+                            <li>
+                                <span class="day">Sunday</span>
+                                <span class="time">Closed</span>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-5">
+                            <h3 class="contact-title mb-4">Emergency Contact</h3>
+                            <p class="contact-info">For urgent maintenance issues outside business hours:</p>
+                            <div class="text-center">
+                                <a href="tel:0765291405" class="btn btn-outline-danger pulse">Emergency Line: 076 529 1405</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Map -->
+    <section class="section-padding" id="location">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="section-title">Our Location</h2>
+                    <p class="lead">Visit our office in Olifantshoek, Northern Cape. We're strategically positioned to serve the region.</p>
+                </div>
+            </div>
+            
+            <div class="row fade-in-up">
+                <div class="col-lg-12">
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110827.552052243!2d22.700557349999997!3d-27.93320345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1c0d83bc59d40a1f%3A0x5327bfabd303e394!2sOlifantshoek!5e0!3m2!1sen!2sza!4v1691504482156!5m2!1sen!2sza" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-6 fade-in-up">
+                    <div class="contact-card h-100">
+                        <h3 class="contact-title">Physical Address</h3>
+                        <p class="contact-info">
+                            1889 Makalan i<br>
+                            Olifantshoek 8450<br>
+                            Northern Cape, South Africa
+                        </p>
+                        <div class="text-center mt-4">
+                            <a href="https://goo.gl/maps/example" target="_blank" class="btn btn-outline-primary">
+                                <i class="fas fa-directions me-2"></i>Get Directions
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 fade-in-up">
+                    <div class="contact-card h-100">
+                        <h3 class="contact-title">Postal Address</h3>
+                        <p class="contact-info">
+                            P.O. BOX 5<br>
+                            Olifantshoek 8450<br>
+                            Northern Cape, South Africa
+                        </p>
+                        <div class="text-center mt-4">
+                            <a href="mailto:puwakamqa@gmail.com" class="btn btn-outline-primary">
+                                <i class="fas fa-envelope me-2"></i>Send Mail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                    <p class="lead">Quick answers to common questions about contacting us and our services.</p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="accordion" id="contactFAQ">
+                        <div class="accordion-item mb-3 fade-in-up">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    What's the best way to contact Yonela General Services?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#contactFAQ">
+                                <div class="accordion-body">
+                                    For general inquiries, email is often the most efficient method. For urgent matters or to discuss specific properties, calling our direct line at <strong>076 529 1405</strong> is recommended. You can also use our contact form for non-urgent queries, and we'll respond within 24 business hours.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item mb-3 fade-in-up">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    What are your office hours?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#contactFAQ">
+                                <div class="accordion-body">
+                                    Our regular business hours are Monday to Friday from 8:00 AM to 5:00 PM, and Saturdays from 9:00 AM to 1:00 PM. We are closed on Sundays and public holidays. For emergency maintenance issues, we have a 24/7 emergency line available to current tenants.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item mb-3 fade-in-up">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    Do I need to make an appointment to visit your office?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#contactFAQ">
+                                <div class="accordion-body">
+                                    While walk-ins are welcome, we recommend scheduling an appointment to ensure that the appropriate team member is available to assist you with your specific needs. You can call ahead or use our contact form to request an appointment.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item mb-3 fade-in-up">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    How quickly do you respond to inquiries?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#contactFAQ">
+                                <div class="accordion-body">
+                                    We strive to respond to all inquiries within 24 business hours. Emergency maintenance requests are addressed immediately through our emergency line. During business hours, phone calls are typically answered live or returned within a few hours if we're temporarily unavailable.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item mb-3 fade-in-up">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                    What information should I include when inquiring about a property?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#contactFAQ">
+                                <div class="accordion-body">
+                                    When inquiring about a property, please include:
+                                    <ul>
+                                        <li>Your name and contact information</li>
+                                        <li>The property address or reference number if known</li>
+                                        <li>Your timeframe for needing the property</li>
+                                        <li>Specific requirements (number of bedrooms, amenities, etc.)</li>
+                                        <li>Any special needs or questions you may have</li>
+                                    </ul>
+                                    This information helps us provide you with the most accurate and helpful response.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section-padding" style="background: var(--gradient-primary);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center text-white">
+                    <h2 class="mb-4">Ready to Find Your Perfect Property Solution?</h2>
+                    <p class="lead mb-4">Contact us today to discuss how Yonela General Services can meet your accommodation and property management needs.</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="tel:0765291405" class="btn btn-warning btn-lg pulse">
+                            <i class="fas fa-phone me-2"></i>Call Now
+                        </a>
+                        <a href="mailto:puwakamqa@gmail.com" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-envelope me-2"></i>Send Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+  <img src="assets/YonelaGeneralLogo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-top">
+                    <p>Your trusted partner for quality accommodation and property solutions in the Northern Cape.</p>
+                    <p><strong>Trading as:</strong> Yonela Accommodation</p>
+                </div>
+                <div class="col-lg-6 text-lg-end mb-4">
+                    <h6>Contact Information</h6>
+                    <p class="mb-1"><i class="fas fa-phone me-2"></i>076 529 1405</p>
+                    <p class="mb-1"><i class="fas fa-envelope me-2"></i>puwakamqa@gmail.com</p>
+                    <p class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>Olifantshoek, Northern Cape</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <p class="mb-0">&copy; 2024 Yonela General Services (PTY) Ltd. All rights reserved. | Registration: 2013/175181/07</p>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <a href="index.html" class="btn btn-outline-light">
+                        <i class="fas fa-home me-2"></i>Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.contact-card, .accordion-item, .map-container').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple form validation
+            const firstName = document.getElementById('firstName').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (!firstName || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // In a real implementation, you would send the form data to a server here
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

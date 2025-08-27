@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Yonela General Services</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c5530;
+            --secondary-color: #f8b500;
+            --accent-color: #e8f5e8;
+            --text-dark: #2c3e50;
+            --text-light: #6c757d;
+            --gradient-primary: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            --gradient-secondary: linear-gradient(135deg, #f8b500 0%, #ffd700 100%);
+            --gradient-accent: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .navbar {
+            background: var(--primary-color) !important;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+            color: var(--secondary-color) !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--secondary-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover::after,
+        .navbar-nav .nav-link.active::after {
+            width: 100%;
+        }
+
+        .page-header {
+            background: var(--gradient-primary);
+            padding: 8rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.15"/><circle cx="10" cy="60" r="0.8" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.6" fill="white" opacity="0.12"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .page-header h1 {
+            color: white;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .page-header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.3rem;
+            margin-bottom: 0;
+        }
+
+        .breadcrumb {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 0.8rem 1.5rem;
+            display: inline-flex;
+        }
+
+        .breadcrumb-item {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .breadcrumb-item.active {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: ">";
+            color: rgba(255,255,255,0.6);
+        }
+
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--gradient-secondary);
+            border-radius: 2px;
+        }
+
+        .service-card {
+            background: white;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            padding: 2.5rem;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-secondary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotateY(360deg);
+            background: var(--gradient-secondary);
+        }
+
+        .service-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .service-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .service-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-connector {
+            position: absolute;
+            top: 90px;
+            left: 50%;
+            width: 80%;
+            height: 2px;
+            background: var(--gradient-primary);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--accent-color);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .author-details {
+            flex-grow: 1;
+        }
+
+        .author-name {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+            color: var(--primary-color);
+        }
+
+        .author-position {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .accordion-button {
+            font-weight: 600;
+            padding: 1.5rem;
+            border: none;
+            border-radius: 10px !important;
+            background: var(--accent-color);
+            color: var(--text-dark);
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border: none;
+        }
+
+        .accordion-body {
+            padding: 1.5rem;
+            background: white;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .cta-section {
+            background: var(--gradient-primary);
+            padding: 5rem 0;
+            color: white;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .process-connector {
+                display: none;
+            }
+            
+            .cta-title {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+  <img src="assets/YonelaGeneralLogo.png" alt="Logo" width="80" height="80" class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 fade-in-up">
+                    <nav class="breadcrumb mb-4">
+                        <a class="breadcrumb-item" href="index.html">Home</a>
+                        <span class="breadcrumb-item active">Services</span>
+                    </nav>
+                    <h1>Our Services</h1>
+                    <p>Comprehensive property management and accommodation solutions tailored to your needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="section-title">What We Offer</h2>
+                    <p class="lead">Yonela General Services provides a comprehensive range of property management and accommodation solutions designed to meet the unique needs of our clients in the Northern Cape region and beyond.</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 fade-in-up">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3 class="service-title">Property Acquisition</h3>
+                        <p class="service-description">We specialize in identifying and acquiring prime residential properties that offer excellent investment potential and meet the growing accommodation needs in the region.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Market analysis and property identification</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Negotiation and acquisition services</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Investment portfolio development</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4 fade-in-up">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="service-title">Property Development</h3>
+                        <p class="service-description">Our development services transform properties into high-quality, comfortable living spaces that meet the demands of modern tenants and maximize investment returns.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Renovation and modernization</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Infrastructure improvements</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Space optimization and design</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4 fade-in-up">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3 class="service-title">Property Management</h3>
+                        <p class="service-description">Comprehensive management services that ensure your properties are well-maintained, properly tenanted, and generating optimal returns on your investment.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Tenant screening and placement</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Rent collection and financial reporting</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Maintenance and repair coordination</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4 fade-in-up">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <h3 class="service-title">Accommodation Services</h3>
+                        <p class="service-description">We provide comfortable, affordable, and secure accommodation solutions tailored to the needs of individuals and companies in the Northern Cape region.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Short-term and long-term rentals</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Furnished and unfurnished options</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Corporate accommodation solutions</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4 fade-in-up">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <h3 class="service-title">Maintenance Services</h3>
+                        <p class="service-description">Our dedicated maintenance team ensures that all properties are kept in excellent condition, addressing issues promptly and performing regular upkeep.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Routine maintenance and inspections</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Emergency repair services</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Landscaping and exterior maintenance</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4 fade-in-up">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 class="service-title">Consultation Services</h3>
+                        <p class="service-description">Leverage our expertise with customized consultation services for property investment, development, and management strategies.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Property investment advice</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Market analysis and trends</li>
+                            <li><i class="fas fa-check-circle text-success me-2"></i>Customized solutions for unique needs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="section-title">Our Process</h2>
+                    <p class="lead">We follow a structured approach to ensure exceptional service delivery and client satisfaction.</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="process-step fade-in-up">
+                        <div class="step-number">1</div>
+                        <div class="process-connector"></div>
+                        <h4>Consultation</h4>
+                        <p>We begin by understanding your specific needs, goals, and requirements through detailed consultation.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="process-step fade-in-up">
+                        <div class="step-number">2</div>
+                        <div class="process-connector"></div>
+                        <h4>Planning</h4>
+                        <p>Our team develops a customized plan tailored to your objectives and budget considerations.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="process-step fade-in-up">
+                        <div class="step-number">3</div>
+                        <div class="process-connector"></div>
+                        <h4>Implementation</h4>
+                        <p>We execute the plan with precision, keeping you informed throughout the process.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="process-step fade-in-up">
+                        <div class="step-number">4</div>
+                        <h4>Ongoing Support</h4>
+                        <p>We provide continuous support and maintenance to ensure long-term satisfaction and success.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="section-title">What Our Clients Say</h2>
+                    <p class="lead">Hear from some of our satisfied clients who have experienced our services firsthand.</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4 fade-in-up">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">Yonela General Services has been managing our company's accommodation needs for over two years. Their professional approach and attention to detail have made them an invaluable partner.</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="author-details">
+                                    <div class="author-name">Thabo Mbeki</div>
+                                    <div class="author-position">Operations Manager, Mining Company</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4 fade-in-up">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">As a property investor, I've worked with many management companies, but Yonela stands out for their reliability and commitment to maximizing returns on investment.</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="author-details">
+                                    <div class="author-name">Nomsa Dlamini</div>
+                                    <div class="author-position">Property Investor</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4 fade-in-up">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">The team at Yonela transformed our property into a modern, attractive rental that now generates 30% more income than before. Their development services are exceptional.</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="author-details">
+                                    <div class="author-name">James Wilson</div>
+                                    <div class="author-position">Property Owner</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4 fade-in-up">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p class="testimonial-text">I've been a tenant with Yonela Accommodation for three years now. They respond quickly to maintenance requests and ensure the property is always in excellent condition.</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="author-details">
+                                    <div class="author-name">Sarah Johnson</div>
+                                    <div class="author-position">Long-term Tenant</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                    <p class="lead">Find answers to common questions about our services and processes.</p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="accordion" id="servicesFAQ">
+                        <div class="accordion-item mb-3 fade-in-up">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    What areas do you serve?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#servicesFAQ">
+                                <div class="accordion-body">
+                                    We primarily serve the Northern Cape region, with a focus on Olifantshoek and surrounding areas. However, we also provide consultation services to clients throughout South Africa.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item mb-3 fade-in-up">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    How do you screen tenants?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#servicesFAQ">
+                                <div class="accordion-body">
+                                    We have a thorough screening process that includes credit checks, employment verification, previous landlord references, and background checks to ensure we place reliable tenants in your property.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item mb-3 fade-in-up">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    What are your management fees?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#servicesFAQ">
+                                <div class="accordion-body">
+                                    Our management fees are competitive and based on the services required. We offer customized packages to suit different needs and property types. Contact us for a detailed quote based on your specific requirements.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item mb-3 fade-in-up">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    Do you handle emergency repairs?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#servicesFAQ">
+                                <div class="accordion-body">
+                                    Yes, we provide 24/7 emergency repair services for all managed properties. We have a network of trusted contractors who can respond quickly to any urgent issues that may arise.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item mb-3 fade-in-up">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                    How often will I receive financial reports?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#servicesFAQ">
+                                <div class="accordion-body">
+                                    Property owners receive detailed financial reports monthly, including income statements, expense reports, and any necessary documentation for tax purposes. We also provide annual summaries for easier financial planning.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Ready to Get Started?</h2>
+            <p class="lead">Contact us today to discuss how we can meet your property management and accommodation needs.</p>
+            
+            <div class="cta-buttons">
+                <a href="tel:0765291405" class="btn btn-warning btn-lg pulse">
+                    <i class="fas fa-phone me-2"></i>Call Now
+                </a>
+                <a href="mailto:puwakamqa@gmail.com" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-envelope me-2"></i>Send Email
+                </a>
+                <a href="contact.html" class="btn btn-light btn-lg">
+                    <i class="fas fa-comments me-2"></i>Contact Form
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+  <img src="assets/YonelaGeneralLogo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-top">
+                    <p>Your trusted partner for quality accommodation and property solutions in the Northern Cape.</p>
+                    <p><strong>Trading as:</strong> Yonela Accommodation</p>
+                </div>
+                <div class="col-lg-6 text-lg-end mb-4">
+                    <h6>Contact Information</h6>
+                    <p class="mb-1"><i class="fas fa-phone me-2"></i>076 529 1405</p>
+                    <p class="mb-1"><i class="fas fa-envelope me-2"></i>puwakamqa@gmail.com</p>
+                    <p class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>Olifantshoek, Northern Cape</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <p class="mb-0">&copy; 2024 Yonela General Services (PTY) Ltd. All rights reserved. | Registration: 2013/175181/07</p>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <a href="index.html" class="btn btn-outline-light">
+                        <i class="fas fa-home me-2"></i>Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .process-step, .testimonial-card, .accordion-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

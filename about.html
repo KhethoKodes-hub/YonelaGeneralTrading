@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Yonela General Services</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c5530;
+            --secondary-color: #f8b500;
+            --accent-color: #e8f5e8;
+            --text-dark: #2c3e50;
+            --text-light: #6c757d;
+            --gradient-primary: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            --gradient-secondary: linear-gradient(135deg, #f8b500 0%, #ffd700 100%);
+            --gradient-accent: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Header */
+        .navbar {
+            background: var(--primary-color) !important;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(44, 85, 48, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+            color: var(--secondary-color) !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--secondary-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover::after,
+        .navbar-nav .nav-link.active::after {
+            width: 100%;
+        }
+        
+        /* Mobile menu improvements */
+        .navbar-toggler {
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--gradient-primary);
+            padding: 8rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.15"/><circle cx="10" cy="60" r="0.8" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.6" fill="white" opacity="0.12"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header h1 {
+            color: white;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .page-header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.3rem;
+            margin-bottom: 0;
+        }
+
+        .breadcrumb {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 0.8rem 1.5rem;
+            display: inline-flex;
+        }
+
+        .breadcrumb-item {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .breadcrumb-item.active {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: ">";
+            color: rgba(255,255,255,0.6);
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-secondary);
+            color: var(--text-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Section Styles */
+        .section-padding {
+            padding: 5rem 0;
+        }
+        
+        .section-title-wrapper {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--gradient-secondary);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Card Styles */
+        .info-card {
+            background: white;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            padding: 2.5rem;
+            height: 100%;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-secondary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover .icon-wrapper {
+            transform: scale(1.1) rotateY(360deg);
+            background: var(--gradient-secondary);
+        }
+
+        .icon-wrapper i {
+            font-size: 2rem;
+            color: white;
+        }
+        
+        /* Enhanced card content */
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .card-text {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: var(--gradient-primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background: var(--secondary-color);
+            border: 4px solid white;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 0 4px var(--primary-color);
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background: white;
+            position: relative;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .timeline-date {
+            background: var(--gradient-secondary);
+            color: var(--text-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        /* Enhanced timeline item content */
+        .timeline-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .timeline-description {
+            color: var(--text-light);
+        }
+
+        /* Leadership Section */
+        .leadership-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .leadership-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.15);
+        }
+
+        .leadership-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .leadership-header::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 20px solid var(--primary-color);
+        }
+
+        .leader-avatar {
+            width: 120px;
+            height: 120px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 3rem;
+            color: var(--text-dark);
+            border: 5px solid rgba(255,255,255,0.2);
+        }
+        
+        /* Enhanced leader info */
+        .leader-name {
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+        
+        .leader-position {
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+        
+        .leader-details {
+            padding: 2rem;
+        }
+        
+        .leader-contact-info {
+            background: var(--accent-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-details {
+            flex-grow: 1;
+        }
+        
+        .contact-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            margin-bottom: 0.2rem;
+        }
+        
+        .contact-value {
+            color: var(--text-dark);
+            margin-bottom: 0;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--gradient-accent);
+            padding: 4rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        /* Enhanced stats with counters */
+        .counter {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* Registration Details */
+        .registration-details {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .detail-item:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateX(10px);
+        }
+
+        .detail-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+        }
+
+        .detail-content strong {
+            color: var(--secondary-color);
+        }
+        
+        /* Enhanced registration details */
+        .registration-title {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        
+        .registration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0%;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .leader-contact-info {
+                padding: 1rem;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+            
+            .registration-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            .navbar, .back-to-top, .page-header, .stats-section, .section-padding.bg-light, footer {
+                display: none !important;
+            }
+            
+            body {
+                color: black;
+                background: white;
+            }
+            
+            .container {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .info-card, .leadership-card, .stat-card, .registration-details {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+  <img src="assets/YonelaGeneralLogo.png" alt="Logo" width="80" height="80" class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 fade-in-up page-header-content">
+                    <nav class="breadcrumb mb-4">
+                        <a class="breadcrumb-item" href="index.html">Home</a>
+                        <span class="breadcrumb-item active">About Us</span>
+                    </nav>
+                    <h1>About Yonela General Services</h1>
+                    <p>Discover our journey, leadership, and commitment to excellence in property management and accommodation services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Overview -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="section-title">Our Story</h2>
+                    <p class="lead section-subtitle">Yonela General Services (PTY) Ltd is a proudly South African, 100% Black Woman-owned private company established in 2013, strategically based in Olifantshoek, Northern Cape.</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-5 slide-in-left">
+                    <div class="info-card h-100">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">Our Foundation</h4>
+                            <p class="card-text">Founded in September 2013, we emerged from recognizing the growing need for quality accommodation services in the Northern Cape region. Our strategic location in Olifantshoek positions us perfectly to serve the accommodation demands driven by mining activities and economic growth in the province.</p>
+                            <p class="mb-0">As a private company, we've built our reputation on delivering exceptional residential property investment services while maintaining our core commitment to community development and empowerment.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-5 slide-in-right">
+                    <div class="info-card h-100">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">Our Purpose</h4>
+                            <p class="card-text">We specialize in residential property investment with a focus on property acquisition, development, and comprehensive management services. Our core business addresses the rising accommodation needs in the Olifantshoek area and surrounding regions.</p>
+                            <p class="mb-0">The general mining activities and economic growth in the Northern Cape province attracts a great number of people who need quality accommodation, and we are strategically positioned to serve this essential need with excellence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision, Mission & Values -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="info-card text-center h-100">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">Our Vision</h4>
+                            <p class="mb-0">To provide the best customer-focused property rental services, property development and acquisition so that we are the most preferred brand in the South African property market.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="info-card text-center h-100">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">Our Mission</h4>
+                            <p class="mb-0">Our mission is to exceed expectations of tenants and relevant stakeholders by continuously providing comfortable, affordable and secure accommodation with consistently reliable customer service.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="info-card text-center h-100">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">Core Values</h4>
+                            <div class="text-start">
+                                <p><i class="fas fa-check-circle text-success me-2"></i><strong>Customer Service</strong> - Prioritizing client satisfaction</p>
+                                <p><i class="fas fa-check-circle text-success me-2"></i><strong>Professionalism</strong> - Maintaining excellence in all operations</p>
+                                <p class="mb-0"><i class="fas fa-check-circle text-success me-2"></i><strong>Accountability</strong> - Taking responsibility for our commitments</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="section-title">Leadership</h2>
+                    <p class="lead section-subtitle">Meet the visionary leader driving our company's success and growth</p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="leadership-card">
+                        <div class="leadership-header">
+                            <div class="leader-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h3 class="leader-name">Mrs. Nosimphine Cynthia Kamnqa</h3>
+                            <p class="leader-position">Managing Director & 100% Owner</p>
+                        </div>
+                        <div class="leader-details">
+                            <p class="lead">As the founder and sole owner of Yonela General Services, Mrs. Kamnqa brings visionary leadership and unwavering commitment to excellence in the property management industry.</p>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5><i class="fas fa-crown me-2 text-warning"></i>Ownership</h5>
+                                    <p>100% ownership stake, ensuring direct accountability and hands-on leadership in all business operations.</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5><i class="fas fa-calendar-alt me-2 text-primary"></i>Experience</h5>
+                                    <p>Over 10 years of leadership since establishing the company in September 2013.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="leader-contact-info">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="contact-item">
+                                            <div class="contact-icon">
+                                                <i class="fas fa-phone"></i>
+                                            </div>
+                                            <div class="contact-details">
+                                                <div class="contact-label">Direct Line</div>
+                                                <div class="contact-value">076 529 1405</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="contact-item">
+                                            <div class="contact-icon">
+                                                <i class="fas fa-envelope"></i>
+                                            </div>
+                                            <div class="contact-details">
+                                                <div class="contact-label">Email</div>
+                                                <div class="contact-value">puwakamqa@gmail.com</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Timeline -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Our Journey</h2>
+                <p class="lead section-subtitle">Key milestones in our growth and development</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item fade-in-up">
+                    <div class="timeline-content">
+                        <div class="timeline-date">September 2013</div>
+                        <h4 class="timeline-title">Company Establishment</h4>
+                        <p class="timeline-description">Yonela General Services (PTY) Ltd was officially registered as a private company, marking the beginning of our journey in the property management industry.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item fade-in-up">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2014-2016</div>
+                        <h4 class="timeline-title">Foundation Building</h4>
+                        <p class="timeline-description">Established core business operations in residential property investment and began building our reputation for quality accommodation services in Olifantshoek.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item fade-in-up">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2017-2020</div>
+                        <h4 class="timeline-title">Growth & Expansion</h4>
+                        <p class="timeline-description">Expanded our property portfolio and developed comprehensive management services, becoming a recognized name in Northern Cape accommodation solutions.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item fade-in-up">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021-Present</div>
+                        <h4 class="timeline-title">Market Leadership</h4>
+                        <p class="timeline-description">Positioned as a leading accommodation provider, serving the growing needs of the mining sector and contributing to regional economic development.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Statistics -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Our Impact</h2>
+                <p class="lead section-subtitle">Numbers that reflect our commitment and growth</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="stat-card">
+                        <div class="counter" data-target="10">0</div>
+                        <div class="stat-label">Years of Excellence</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="stat-card">
+                        <div class="counter" data-target="100">0</div>
+                        <div class="stat-label">Black Woman Owned</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="stat-card">
+                        <div class="counter" data-target="1">0</div>
+                        <div class="stat-label">Strategic Location</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="stat-card">
+                        <div class="counter" data-target="3">0</div>
+                        <div class="stat-label">Core Values</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Details -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="text-center mb-5">
+                        <h2 class="section-title">Company Registration</h2>
+                        <p class="lead section-subtitle">Official business credentials and regulatory compliance</p>
+                    </div>
+                    
+                    <div class="registration-details">
+                        <h3 class="registration-title text-center mb-4">Business Information</h3>
+                        <div class="registration-grid">
+                            <div class="detail-item">
+                                <div class="detail-icon">
+                                    <i class="fas fa-store"></i>
+                                </div>
+                                <div class="detail-content">
+                                    <strong>Trading Name</strong><br>
+                                    Yonela Accommodation
+                                </div>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <div class="detail-icon">
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <div class="detail-content">
+                                    <strong>Registration Number</strong><br>
+                                    2013/175181/07
+                                </div>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <div class="detail-icon">
+                                    <i class="fas fa-file-invoice"></i>
+                                </div>
+                                <div class="detail-content">
+                                    <strong>Income Tax Reference</strong><br>
+                                    9418344173
+                                </div>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <div class="detail-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="detail-content">
+                                    <strong>Tax PIN</strong><br>
+                                    929C7D823G
+                                </div>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <div class="detail-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="detail-content">
+                                    <strong>Good Standing</strong><br>
+                                    0031793823GS1506230927460
+                                </div>
+                            </div>
+                            
+                            <div class="detail-item">
+                                <div class="detail-icon">
+                                    <i class="fas fa-building"></i>
+                                </div>
+                                <div class="detail-content">
+                                    <strong>Enterprise Type</strong><br>
+                                    Private Company
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Our Location</h2>
+                <p class="lead section-subtitle">Strategically positioned in the heart of Northern Cape's economic hub</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="info-card h-100">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">Physical Address</h4>
+                            <p class="card-text">Our offices are located in the bustling town of Olifantshoek, providing easy access for clients and strategic positioning for our property management operations.</p>
+                            <div class="text-start">
+                                <p class="mb-1"><strong>Address:</strong></p>
+                                <p class="mb-1">1889 Makalan i</p>
+                                <p class="mb-1">Olifantshoek 8450</p>
+                                <p class="mb-0">Northern Cape, South Africa</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4">
+                    <div class="info-card h-100">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-mailbox"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">Postal Address</h4>
+                            <p class="card-text">For all correspondence and official communications, please use our dedicated postal address to ensure prompt delivery and processing.</p>
+                            <div class="text-start">
+                                <p class="mb-1"><strong>Postal Address:</strong></p>
+                                <p class="mb-1">P.O. BOX 5</p>
+                                <p class="mb-1">Olifantshoek 8450</p>
+                                <p class="mb-0">Northern Cape, South Africa</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BEE Profile & Empowerment -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title">Empowerment & Transformation</h2>
+                    <p class="lead mb-5 section-subtitle">Committed to South Africa's economic transformation and empowerment objectives</p>
+                    
+                    <div class="info-card">
+                        <div class="row align-items-center">
+                            <div class="col-lg-4">
+                                <div class="icon-wrapper mx-auto">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 text-start">
+                                <h4 class="card-title">BEE Profile</h4>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <p><i class="fas fa-check-circle text-success me-2"></i><strong>100% HDI Ownership</strong></p>
+                                        <p><i class="fas fa-check-circle text-success me-2"></i><strong>Female-Owned Business</strong></p>
+                                        <p><i class="fas fa-check-circle text-success me-2"></i><strong>South African Citizen</strong></p>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <p><i class="fas fa-users me-2 text-primary"></i><strong>Empowerment Focus</strong></p>
+                                        <p><i class="fas fa-handshake me-2 text-primary"></i><strong>Community Development</strong></p>
+                                        <p><i class="fas fa-chart-line me-2 text-primary"></i><strong>Economic Growth</strong></p>
+                                    </div>
+                                </div>
+                                <p class="text-muted mb-0">Our ownership structure and business practices align with South Africa's Broad-Based Black Economic Empowerment objectives, contributing to meaningful economic transformation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="section-padding" style="background: var(--gradient-primary);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center text-white">
+                    <h2 class="mb-4">Ready to Experience Excellence?</h2>
+                    <p class="lead mb-4">Discover how Yonela General Services can meet your accommodation and property management needs with our decade of proven expertise.</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <a href="tel:0765291405" class="btn btn-warning btn-lg pulse">
+                            <i class="fas fa-phone me-2"></i>Call Us Today
+                        </a>
+                        <a href="mailto:puwakamqa@gmail.com" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-envelope me-2"></i>Send Email
+                        </a>
+                        <a href="contact.html" class="btn btn-light btn-lg">
+                            <i class="fas fa-comments me-2"></i>Contact Form
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #1a1a1a; color: white; padding: 3rem 0 1rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+  <img src="assets/YonelaGeneralLogo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-top">
+                    <p>Your trusted partner for quality accommodation and property solutions in the Northern Cape.</p>
+                    <p><strong>Trading as:</strong> Yonela Accommodation</p>
+                </div>
+                <div class="col-lg-6 text-lg-end mb-4">
+                    <h6>Contact Information</h6>
+                    <p class="mb-1"><i class="fas fa-phone me-2"></i>076 529 1405</p>
+                    <p class="mb-1"><i class="fas fa-envelope me-2"></i>puwakamqa@gmail.com</p>
+                    <p class="mb-0"><i class="fas fa-map-marker-alt me-2"></i>Olifantshoek, Northern Cape</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <p class="mb-0">&copy; 2024 Yonela General Services (PTY) Ltd. All rights reserved. | Registration: 2013/175181/07</p>
+                </div>
+                <div class="col-lg-6 text-lg-end">
+                    <a href="index.html" class="btn btn-warning">
+                        <i class="fas fa-home me-2"></i>Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.info-card, .timeline-item, .stat-card, .leadership-card, .detail-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add hover effects to timeline items
+        document.querySelectorAll('.timeline-content').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add stagger animation to timeline items
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.2}s`;
+        });
+
+        // Add parallax effect to page header
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.page-header');
+            if (parallax) {
+                const speed = scrolled * 0.5;
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Back to top button
+        const backToTopButton = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Counter animation for stats
+        const counters = document.querySelectorAll('.counter');
+        let hasCounted = false;
+        
+        function startCounters() {
+            if (hasCounted) return;
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / 100;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(() => startCounters(), 20);
+                } else {
+                    counter.innerText = target;
+                }
+            });
+            
+            hasCounted = true;
+        }
+        
+        // Check if counters are in view
+        const statsSection = document.querySelector('.stats-section');
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startCounters();
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+        
+        // Print functionality
+        const printButton = document.createElement('button');
+        printButton.innerHTML = '<i class="fas fa-print me-2"></i>Print Page';
+        printButton.classList.add('btn', 'btn-outline-primary', 'mb-3');
+        printButton.style.position = 'fixed';
+        printButton.style.bottom = '30px';
+        printButton.style.left = '30px';
+        printButton.style.zIndex = '1000';
+        printButton.addEventListener('click', function() {
+            window.print();
+        });
+        document.body.appendChild(printButton);
+    </script>
+</body>
+</html>
