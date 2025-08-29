@@ -7,7 +7,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="icon" href="assets/YonelaGeneralLogo.png" type="image/png">
+    <link rel="icon" href="assets/YonelaGeneralLogo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
     <style>
         :root {
             --primary-color: #2c5530;
@@ -53,6 +54,12 @@
                 opacity: 1;
                 transform: translateX(0);
             }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         .fade-in-up {
@@ -119,7 +126,10 @@
 
         /* Hero Section */
         .hero {
-            background: var(--gradient-primary);
+            background: var(--gradient-primary), url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -330,6 +340,99 @@
             font-size: 1.2rem;
         }
 
+        /* Testimonials */
+        .testimonials {
+            background-color: #f9f9f9;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 1rem;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--primary-color);
+            opacity: 0.1;
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-text {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+        
+        /* Properties Gallery */
+        .property-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .property-img {
+            height: 250px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .property-content {
+            padding: 1.5rem;
+        }
+        
+        .property-features {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+        }
+        
+        .property-feature {
+            display: flex;
+            align-items: center;
+        }
+        
+        .property-feature i {
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            animation: pulse 2s infinite;
+        }
+        
         /* Footer */
         .footer {
             background: #1a1a1a;
@@ -346,6 +449,29 @@
         .footer a:hover {
             color: var(--secondary-color);
         }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--secondary-color);
+            color: var(--text-dark);
+            transform: translateY(-3px);
+        }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -359,6 +485,16 @@
             
             .section-title {
                 font-size: 2rem;
+            }
+            
+            .sticky-cta {
+                bottom: 1rem;
+                right: 1rem;
+            }
+            
+            .sticky-cta .btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
             }
         }
 
@@ -379,6 +515,16 @@
             width: 0%;
             transition: width 0.1s ease;
         }
+        
+        /* Loading optimization */
+        .lazy-load {
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .lazy-load.loaded {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -391,7 +537,7 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#home">
-  <img src="assets/YonelaGeneralLogo.png" alt="Logo" width="80" height="80" class="d-inline-block align-text-top">
+                <img src="assets/YonelaGeneralLogo.png" alt="Logo" width="80" height="80" class="d-inline-block align-text-top">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -408,6 +554,12 @@
                         <a class="nav-link" href="services.html">Services</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="properties">Properties</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>-->
+                    <li class="nav-item">
                         <a class="nav-link" href="contact.html">Contact</a>
                     </li>
                 </ul>
@@ -422,13 +574,19 @@
                 <div class="col-lg-6 hero-content fade-in-up">
                     <h1>Premium Accommodation Solutions</h1>
                     <p>Discover comfortable, affordable, and secure residential accommodation in Olifantshoek, Northern Cape. Your trusted partner for quality property rental services.</p>
-                    <a href="#about" class="btn-custom">
-                        <i class="fas fa-arrow-right me-2"></i>Explore Our Services
-                    </a>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#properties" class="btn-custom">
+                            <i class="fas fa-home me-2"></i>View Properties
+                        </a>
+                        <a href="#contact" class="btn btn-outline-light rounded-pill px-4 py-2">
+                            <i class="fas fa-phone me-2"></i>Contact Us
+                        </a>
+                    </div>
                 </div>
                 <div class="col-lg-6 slide-in-right">
                     <div class="text-center">
-                        <i class="fas fa-building" style="font-size: 15rem; color: rgba(255,255,255,0.1);"></i>
+                        <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Luxury Accommodation" class="img-fluid rounded-3 shadow-lg" style="max-height: 500px;">
                     </div>
                 </div>
             </div>
@@ -490,6 +648,24 @@
                                 <p>Exceeding expectations by providing comfortable, affordable, and secure accommodation with reliable service.</p>
                             </div>
                         </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card-custom p-4 text-center h-100">
+                                <div class="icon-wrapper">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <h5>Our Values</h5>
+                                <p>Integrity, professionalism, and accountability guide everything we do for our clients.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card-custom p-4 text-center h-100">
+                                <div class="icon-wrapper">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h5>Our Promise</h5>
+                                <p>Quality service and comfortable living spaces that feel like home away from home.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -500,31 +676,28 @@
     <section class="stats section-padding">
         <div class="container">
             <div class="row text-center">
-                <div class="col-lg-4 mb-4">
+                <div class="col-lg-3 col-md-6 mb-4">
                     <div class="stat-item">
-                        <div class="icon-wrapper mx-auto mb-3">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <h4>Customer Service</h4>
-                        <p>Prioritizing our clients' needs and satisfaction in every interaction and service delivery.</p>
+                        <span class="stat-number" data-count="100">0</span>
+                        <span class="stat-label">Satisfied Clients</span>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-4">
+                <div class="col-lg-3 col-md-6 mb-4">
                     <div class="stat-item">
-                        <div class="icon-wrapper mx-auto mb-3">
-                            <i class="fas fa-award"></i>
-                        </div>
-                        <h4>Professionalism</h4>
-                        <p>Maintaining the highest standards of excellence and integrity in all our business operations.</p>
+                        <span class="stat-number" data-count="50">0</span>
+                        <span class="stat-label">Properties</span>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-4">
+                <div class="col-lg-3 col-md-6 mb-4">
                     <div class="stat-item">
-                        <div class="icon-wrapper mx-auto mb-3">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h4>Accountability</h4>
-                        <p>Taking responsibility for our actions and commitments to ensure reliable service delivery.</p>
+                        <span class="stat-number" data-count="10">0</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="24">0</span>
+                        <span class="stat-label">/7 Support</span>
                     </div>
                 </div>
             </div>
@@ -546,7 +719,13 @@
                             <i class="fas fa-home"></i>
                         </div>
                         <h5>Residential Accommodation</h5>
-                        <p>Quality residential properties in Olifantshoek area, designed for comfort and security.</p>
+                        <p>Quality residential properties in Olifantshoek area, designed for comfort and security with all modern amenities included.</p>
+                        <ul class="text-start mt-3 ps-3">
+                            <li>Fully furnished options</li>
+                            <li>Utilities included</li>
+                            <li>Regular maintenance</li>
+                            <li>Secure environments</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4">
@@ -555,7 +734,13 @@
                             <i class="fas fa-chart-line"></i>
                         </div>
                         <h5>Property Investment</h5>
-                        <p>Strategic property acquisition and development opportunities in the growing Northern Cape region.</p>
+                        <p>Strategic property acquisition and development opportunities in the growing Northern Cape region with great ROI potential.</p>
+                        <ul class="text-start mt-3 ps-3">
+                            <li>Market analysis</li>
+                            <li>Property sourcing</li>
+                            <li>Investment consulting</li>
+                            <li>Development opportunities</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4">
@@ -564,12 +749,154 @@
                             <i class="fas fa-cogs"></i>
                         </div>
                         <h5>Property Management</h5>
-                        <p>Comprehensive property management services ensuring optimal performance and maintenance.</p>
+                        <p>Comprehensive property management services ensuring optimal performance and maintenance for property owners.</p>
+                        <ul class="text-start mt-3 ps-3">
+                            <li>Tenant screening</li>
+                            <li>Rent collection</li>
+                            <li>Maintenance coordination</li>
+                            <li>Financial reporting</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Properties Section -->
+    <section id="properties" class="section-padding" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Featured Properties</h2>
+                <p class="lead">Explore our premium accommodation options in Olifantshoek</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="property-card">
+                        <a href="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" data-lightbox="properties" data-title="Luxury Apartment">
+                            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luxury Apartment" class="property-img">
+                        </a>
+                        <div class="property-content">
+                            <h5>Modern 2-Bedroom Apartment</h5>
+                            <p class="text-muted">Olifantshoek Central</p>
+                            <div class="property-features">
+                                <span class="property-feature"><i class="fas fa-bed"></i> 2 Bedrooms</span>
+                                <span class="property-feature"><i class="fas fa-bath"></i> 1 Bathroom</span>
+                                <span class="property-feature"><i class="fas fa-ruler-combined"></i> 85m²</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <h5 class="text-primary mb-0">R5,500/mo</h5>
+                                <a href="#contact" class="btn btn-sm btn-outline-primary">Inquire Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="property-card">
+                        <a href="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" data-lightbox="properties" data-title="Family Home">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Family Home" class="property-img">
+                        </a>
+                        <div class="property-content">
+                            <h5>Spacious 3-Bedroom House</h5>
+                            <p class="text-muted">Quiet Neighborhood</p>
+                            <div class="property-features">
+                                <span class="property-feature"><i class="fas fa-bed"></i> 3 Bedrooms</span>
+                                <span class="property-feature"><i class="fas fa-bath"></i> 2 Bathrooms</span>
+                                <span class="property-feature"><i class="fas fa-ruler-combined"></i> 120m²</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <h5 class="text-primary mb-0">R8,200/mo</h5>
+                                <a href="#contact" class="btn btn-sm btn-outline-primary">Inquire Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="property-card">
+                        <a href="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" data-lightbox="properties" data-title="Studio Apartment">
+                            <img src="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Studio Apartment" class="property-img">
+                        </a>
+                        <div class="property-content">
+                            <h5>Cozy Studio Apartment</h5>
+                            <p class="text-muted">City Center Location</p>
+                            <div class="property-features">
+                                <span class="property-feature"><i class="fas fa-bed"></i> 1 Bedroom</span>
+                                <span class="property-feature"><i class="fas fa-bath"></i> 1 Bathroom</span>
+                                <span class="property-feature"><i class="fas fa-ruler-combined"></i> 45m²</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <h5 class="text-primary mb-0">R3,800/mo</h5>
+                                <a href="#contact" class="btn btn-sm btn-outline-primary">Inquire Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="#contact" class="btn-custom">View All Properties</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section 
+    <section id="testimonials" class="testimonials section-padding">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">What Our Clients Say</h2>
+                <p class="lead">Hear from our satisfied residents and clients</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            <p>"Yonela General Services provided me with a beautiful home when I relocated for work. The process was smooth, and the property was exactly as described. Highly recommend their services!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Client" class="testimonial-avatar">
+                            <div>
+                                <h6 class="mb-0">Sarah Johnson</h6>
+                                <small class="text-muted">Resident since 2020</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            <p>"As a property investor, I've worked with many management companies. Yonela stands out for their professionalism, attention to detail, and excellent tenant relations. My properties are in good hands."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="testimonial-avatar">
+                            <div>
+                                <h6 class="mb-0">David Thompson</h6>
+                                <small class="text-muted">Property Investor</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            <p>"The team at Yonela helped me find the perfect accommodation for my mining crew. Their properties are well-maintained, secure, and conveniently located. A reliable partner for our accommodation needs."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Client" class="testimonial-avatar">
+                            <div>
+                                <h6 class="mb-0">Michael Baloyi</h6>
+                                <small class="text-muted">Mining Company Manager</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>-->
 
     <!-- Contact Section -->
     <section id="contact" class="contact section-padding">
@@ -631,7 +958,7 @@
                             </div>
                         </div>
                         
-                        <div class="d-flex align-items-start">
+                        <div class="d-flex align-items-start mb-4">
                             <div class="contact-icon">
                                 <i class="fas fa-mailbox"></i>
                             </div>
@@ -641,6 +968,17 @@
                                 Olifantshoek 8450<br>
                                 Northern Cape
                             </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110689.5736667732!2d22.69291105!3d-29.999999999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1c66ce37d15188a9%3A0xd4209a24384f6b2c!2sOlifantshoek!5e0!3m2!1sen!2sza!4v1657544037145!5m2!1sen!2sza" 
+                                width="100%" 
+                                height="200" 
+                                style="border-radius: 10px;" 
+                                allowfullscreen="" 
+                                loading="lazy">
+                            </iframe>
                         </div>
                     </div>
                 </div>
@@ -652,14 +990,32 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 mb-4">
-  <img src="assets/YonelaGeneralLogo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-top">
+                <div class="col-lg-4 mb-4">
+                    <img src="assets/YonelaGeneralLogo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-top mb-3">
                     <p>Your trusted partner for quality accommodation and property solutions in the Northern Cape.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
-                <div class="col-lg-6 text-lg-end mb-4">
+                <div class="col-lg-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#properties">Properties</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Business Details</h5>
                     <p><strong>Trading as:</strong> Yonela Accommodation</p>
                     <p><strong>Registration:</strong> 2013/175181/07</p>
                     <p>100% Black Woman Owned Business</p>
+                    <p>B-BBEE Compliant</p>
                 </div>
             </div>
             <hr class="my-4">
@@ -674,7 +1030,15 @@
         </div>
     </footer>
 
+    <!-- Sticky CTA Button -->
+    <div class="sticky-cta">
+        <a href="tel:0765291405" class="btn btn-warning btn-lg rounded-pill shadow">
+            <i class="fas fa-phone me-2"></i>Call Now
+        </a>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
     <script>
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
@@ -723,8 +1087,69 @@
         }, observerOptions);
 
         // Observe all card elements
-        document.querySelectorAll('.card-custom, .stat-item, .contact-info').forEach(el => {
+        document.querySelectorAll('.card-custom, .stat-item, .contact-info, .property-card, .testimonial-card').forEach(el => {
             observer.observe(el);
+        });
+
+        // Animated counter for stats
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText;
+                
+                const inc = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            
+            const startCounter = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCount();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+            
+            const counterObserver = new IntersectionObserver(startCounter, { threshold: 0.5 });
+            counterObserver.observe(counter);
+        });
+
+        // Lazy loading images
+        document.addEventListener("DOMContentLoaded", function() {
+            let lazyImages = [].slice.call(document.querySelectorAll("img.lazy-load"));
+            
+            if ("IntersectionObserver" in window) {
+                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            let lazyImage = entry.target;
+                            lazyImage.src = lazyImage.dataset.src;
+                            lazyImage.classList.add("loaded");
+                            lazyImageObserver.unobserve(lazyImage);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(function(lazyImage) {
+                    lazyImageObserver.observe(lazyImage);
+                });
+            }
+        });
+
+        // Initialize lightbox
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'showImageNumberLabel': true
         });
     </script>
 </body>
