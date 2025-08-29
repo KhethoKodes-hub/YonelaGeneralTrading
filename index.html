@@ -33,7 +33,6 @@
             overflow-x: hidden;
         }
 
-        /* Custom Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -70,7 +69,6 @@
             animation: slideInRight 0.8s ease-out;
         }
 
-        /* Header Styles */
         .navbar {
             background: rgba(44, 85, 48, 0.95) !important;
             backdrop-filter: blur(10px);
@@ -124,7 +122,6 @@
             width: 100%;
         }
 
-        /* Hero Section */
         .hero {
             background: var(--gradient-primary), url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
@@ -202,7 +199,6 @@
             left: 100%;
         }
 
-        /* Card Styles */
         .card-custom {
             background: white;
             border: none;
@@ -256,7 +252,6 @@
             color: white;
         }
 
-        /* Section Styles */
         .section-padding {
             padding: 5rem 0;
         }
@@ -281,7 +276,6 @@
             border-radius: 2px;
         }
 
-        /* Stats Section */
         .stats {
             background: var(--accent-color);
         }
@@ -308,7 +302,6 @@
             font-weight: 500;
         }
 
-        /* Contact Section */
         .contact {
             background: var(--gradient-primary);
             color: white;
@@ -340,7 +333,6 @@
             font-size: 1.2rem;
         }
 
-        /* Testimonials */
         .testimonials {
             background-color: #f9f9f9;
         }
@@ -384,7 +376,6 @@
             margin-right: 1rem;
         }
         
-        /* Properties Gallery */
         .property-card {
             border-radius: 15px;
             overflow: hidden;
@@ -528,12 +519,10 @@
     </style>
 </head>
 <body>
-    <!-- Scroll Indicator -->
     <div class="scroll-indicator">
         <div class="scroll-progress"></div>
     </div>
 
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#home">
@@ -553,10 +542,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="services.html">Services</a>
                     </li>
-                    <li class="nav-item">
+                    <!--<li class="nav-item">
                         <a class="nav-link" href="properties">Properties</a>
-                    </li>
-                    <li class="nav-item">
+                    </li>-->
+                    <!--<li class="nav-item">
                         <a class="nav-link" href="#testimonials">Testimonials</a>
                     </li>-->
                     <li class="nav-item">
@@ -567,7 +556,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
             <div class="row align-items-center">
@@ -578,22 +566,21 @@
                         <a href="#properties" class="btn-custom">
                             <i class="fas fa-home me-2"></i>View Properties
                         </a>
-                        <a href="#contact" class="btn btn-outline-light rounded-pill px-4 py-2">
+                        <a href="contact.html" class="btn btn-outline-light rounded-pill px-4 py-2">
                             <i class="fas fa-phone me-2"></i>Contact Us
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-6 slide-in-right">
+                <!--<div class="col-lg-6 slide-in-right">
                     <div class="text-center">
                         <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                              alt="Luxury Accommodation" class="img-fluid rounded-3 shadow-lg" style="max-height: 500px;">
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="section-padding">
         <div class="container">
             <div class="row">
@@ -672,7 +659,6 @@
         </div>
     </section>
 
-    <!-- Values Section -->
     <section class="stats section-padding">
         <div class="container">
             <div class="row text-center">
@@ -704,7 +690,6 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services" class="section-padding">
         <div class="container">
             <div class="text-center mb-5">
@@ -762,7 +747,6 @@
         </div>
     </section>
 
-    <!-- Properties Section -->
     <section id="properties" class="section-padding" style="background-color: #f8f9fa;">
         <div class="container">
             <div class="text-center mb-5">
@@ -785,7 +769,7 @@
                                 <span class="property-feature"><i class="fas fa-ruler-combined"></i> 85m²</span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-3">
-                                <h5 class="text-primary mb-0">R5,500/mo</h5>
+                                <!--<h5 class="text-primary mb-0">R5,500/mo</h5>-->
                                 <a href="#contact" class="btn btn-sm btn-outline-primary">Inquire Now</a>
                             </div>
                         </div>
@@ -806,7 +790,7 @@
                                 <span class="property-feature"><i class="fas fa-ruler-combined"></i> 120m²</span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-3">
-                                <h5 class="text-primary mb-0">R8,200/mo</h5>
+                                <!--<h5 class="text-primary mb-0">R8,200/mo</h5>-->
                                 <a href="#contact" class="btn btn-sm btn-outline-primary">Inquire Now</a>
                             </div>
                         </div>
@@ -827,7 +811,7 @@
                                 <span class="property-feature"><i class="fas fa-ruler-combined"></i> 45m²</span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-3">
-                                <h5 class="text-primary mb-0">R3,800/mo</h5>
+                                <!--<h5 class="text-primary mb-0">R3,800/mo</h5>-->
                                 <a href="#contact" class="btn btn-sm btn-outline-primary">Inquire Now</a>
                             </div>
                         </div>
@@ -994,10 +978,10 @@
                     <img src="assets/YonelaGeneralLogo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-top mb-3">
                     <p>Your trusted partner for quality accommodation and property solutions in the Northern Cape.</p>
                     <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.facebook.com/share/14HmfzyvByz/?mibextid=wwXIfr" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <!--<a href="#" class="social-link"><i class="fab fa-twitter"></i></a>-->
+                        <!--<a href="#" class="social-link"><i class="fab fa-instagram"></i></a>-->
+                        <!--<a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>-->
                     </div>
                 </div>
                 <div class="col-lg-4 mb-4">
